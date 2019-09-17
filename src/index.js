@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const config = require('./config')
 
 app.use(cors());
 app.use(express.json());
@@ -13,5 +14,5 @@ const rest = require('./routers/rest');
 app.use('/', rest);
 
 // start server
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT || config.PORT;
 return app.listen(PORT, _ => console.log(`Server is running on port ${PORT}`));
