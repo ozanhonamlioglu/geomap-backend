@@ -31,12 +31,12 @@ module.exports.makeMarker = async (address) => {
         }
     
         if(code === 'DE') {
-            return { error: false, inGermany: true, data: newMarker }
+            return { error: false, inGermany: true, data: newMarker, exist: false }
         } else {
-            return { error: false, inGermany: false }
+            return { error: false, inGermany: false, exist: false }
         }
     } catch (error) {
-        return {error: true}
+        return {error: true, api: false}
     }
 
 }
@@ -55,6 +55,7 @@ module.exports.update = async (id, address, database) => {
                 newData.name = out.data.name
                 newData.lat = out.data.lat
                 newData.lng = out.data.lng
+                out.exist = true
             }
         })
         out.data = newData

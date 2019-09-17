@@ -19,8 +19,12 @@ router.post('/create', async (req, res) => {
 
 router.post('/delete', (req, res) => {
     let { id } = req.body
-    SAMPLE_BOOK = SAMPLE_BOOK.filter(obj => obj.id !== id)
-    return res.send(true)
+    let exist = false
+    SAMPLE_BOOK = SAMPLE_BOOK.filter(obj => {
+        if(obj.id === id) exist = true;
+        return obj.id !== id
+    })
+    return res.send(exist)
 });
 
 router.post('/update', async (req, res) => {
